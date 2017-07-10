@@ -1,0 +1,21 @@
+﻿@model ChurchLib.Models.RegisterBindingModel
+@{
+   // Layout = "Register ";
+}
+
+<div>
+    <form action="/api/account/register" method="post">
+        <div class="form-group">
+           <input class="form-control" type="email" name="Email" placeholder="Email" required />
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="Password" placeholder="Password" required />
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="ConfirmPassword" placeholder="Confirm Password" required/>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>

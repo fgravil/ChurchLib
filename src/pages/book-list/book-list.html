@@ -1,0 +1,38 @@
+<!--
+  Generated template for the BookList page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Book List</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-searchbar
+    [(ngModel)]="input"
+    [showCancelButton]="true"
+    (ionInput)="onSearch()"
+    (ionCancel)="onCancelSearch()">
+  </ion-searchbar>
+  <ion-list>
+    <button ion-item *ngFor="let book of queriedBooks" (click) = "onSelectBook(book)">
+      <ion-thumbnail item-left>
+        <img src="img/no-cover.jpg" alt="Book Cover"/>
+      </ion-thumbnail>
+      <h3>{{book.title}}</h3>
+      <p>{{book.author}} • {{book.year}}</p>
+    </button>
+  </ion-list>
+  <ion-fab right bottom>
+    <button ion-fab (click)="onAddBook()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>
