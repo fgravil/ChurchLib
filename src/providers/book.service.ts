@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Http,  Headers } from "@angular/http";
-import { Book } from "../pages/book-list/book";
 import 'rxjs/add/operator/toPromise';
+import { Book } from "../models/book";
 
 @Injectable()
 export class BookService{

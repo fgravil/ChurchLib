@@ -1,6 +1,6 @@
 import { Http, Headers } from "@angular/http";
 import { Injectable } from "@angular/core";
-import { Reader } from "../pages/reader-list/reader";
+import { Reader } from "../models/reader";
 
 @Injectable()
 export class ReaderService {

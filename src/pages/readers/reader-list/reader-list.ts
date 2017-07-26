@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ReaderService } from "../../providers/reader-service";
-import { Reader } from "./reader";
 import { ReaderDetail } from "./reader-detail/reader-detail";
 import { ReaderEdit } from "./reader-edit/reader-edit";
+import { Reader } from "../../models/reader";
+import { ReaderService } from "../../providers/reader.service";
 
 /**
  * Generated class for the ReaderList page.

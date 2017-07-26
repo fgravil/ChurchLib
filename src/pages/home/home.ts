@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AuthService } from "../../providers/auth-service";
-//import { Userpage } from "../userpage/userpage";
+    //import { Userpage } from "../userpage/userpage";
 import { Signup } from "../signup/signup";
 import { BookList } from "../book-list/book-list";
+import { AuthService } from "../../providers/auth.service";
 
 @Component({
   selector: 'page-home',

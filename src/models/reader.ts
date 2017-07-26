@@ -1,4 +1,4 @@
-import { BorrowedBook } from "../book-list/borrowed-book";
+import { Transaction } from "./transaction";
 
 export class Reader {
     public constructor(
@@ -7,6 +7,6 @@ export class Reader {
         public lastName: string,
         public email: string,
         public phone: string,
-        public BorrowedBooks: BorrowedBook[]
+        public transactions: Transaction[]
     ){}
 }

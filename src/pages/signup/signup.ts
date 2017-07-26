@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { AuthService } from "../../providers/auth-service";
 import { Credentials } from "./Credentials";
+import { AuthService } from "../../providers/auth.service";
 
 /**
  * Generated class for the Signup page.

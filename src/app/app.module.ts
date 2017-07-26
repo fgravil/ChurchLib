@@ -9,16 +9,18 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { Signup } from '../pages/signup/signup';
 import { Userpage } from '../pages/userpage/userpage';
-import { AuthService } from "../providers/auth-service";
-import { BookService } from '../providers/book-service';
+import { AuthService } from "../providers/auth.service";
+import { BookService } from '../providers/book.service';
 import { BookList } from "../pages/book-list/book-list";
 import { BookDetail } from "../pages/book-list/book-detail/book-detail";
 import { BookEdit } from "../pages/book-list/book-edit/book-edit";
 import { ReaderList } from "../pages/reader-list/reader-list";
-import { ReaderService } from "../providers/reader-service";
+import { ReaderService } from "../providers/reader.service";
 import { FormsModule } from "@angular/forms";
 import { ReaderEdit } from "../pages/reader-list/reader-edit/reader-edit";
 import { ReaderDetail } from "../pages/reader-list/reader-detail/reader-detail";
+import { TransactionService } from "../providers/transaction.service";
+import { TransactionsList } from "../pages/transactions-list/transactions-list";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { ReaderDetail } from "../pages/reader-list/reader-detail/reader-detail";
     BookList,
     ReaderList,
     ReaderEdit,
-    ReaderDetail
+    ReaderDetail,
+    TransactionsList
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { ReaderDetail } from "../pages/reader-list/reader-detail/reader-detail";
     ReaderList,
     BookEdit,
     ReaderEdit,
-    ReaderDetail
+    ReaderDetail,
+    TransactionsList
   ],
   providers: [
     StatusBar,
@@ -58,6 +62,7 @@ import { ReaderDetail } from "../pages/reader-list/reader-detail/reader-detail";
     AuthService,
     BookService,
     ReaderService,
+    TransactionService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

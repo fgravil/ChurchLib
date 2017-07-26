@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { BookService } from "../../providers/book-service";
 import { BookDetail } from "./book-detail/book-detail";
 import { BookEdit } from "./book-edit/book-edit";
-import { Book } from "./book";
+import { Book } from "../../models/book";
+import { BookService } from "../../providers/book.service";
 
 /**
  * Generated class for the BookList page.

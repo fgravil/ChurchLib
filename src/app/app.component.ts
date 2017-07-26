@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { BookList } from "../pages/book-list/book-list";
 import { ReaderList } from "../pages/reader-list/reader-list";
+import { TransactionsList } from "../pages/transactions-list/transactions-list";
 @Component({
   templateUrl: 'app.html'
 })
@@ -13,7 +14,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = HomePage;
 
-  pages: Array <{title: string, component: any}>
+  pages: Array <any> = [];
   
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -24,8 +25,9 @@ export class MyApp {
     });
 
     this.pages = [
-      {title: 'Books List', component: BookList},
-      {title: 'Readers List', component: ReaderList}
+      TransactionsList,
+      BookList,
+      ReaderList
     ]
   }
 

@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { Book } from "../book";
-import { BookService } from "../../../providers/book-service";
 import { BookList } from "../book-list";
 import { BookEdit } from "../book-edit/book-edit";
 import { Genre } from "../genre";
+import { BookService } from "../../../providers/book.service";
+import { Book } from "../../../models/book";
 
 /**
  * Generated class for the BookDetail page.

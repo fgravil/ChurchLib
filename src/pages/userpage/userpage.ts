@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { AuthService } from "../../providers/auth-service";
 import { HomePage } from "../home/home";
+import { AuthService } from "../../providers/auth.service";
 
 /**
  * Generated class for the Userpage page.

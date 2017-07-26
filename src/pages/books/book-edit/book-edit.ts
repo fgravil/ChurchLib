@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NgForm } from "@angular/forms";
-import { Book } from "../book";
-import { BookService } from "../../../providers/book-service";
+import { Book } from "../../../models/book";
+import { BookService } from "../../../providers/book.service";
 
 /**
  * Generated class for the BookEdit page.

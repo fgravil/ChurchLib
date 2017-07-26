@@ -7,10 +7,10 @@ export class Book {
         public title: string,
         public author: string,
         public year: number,
-        public ISBN: number,
+        public isbn: number,
         public description: string,
         public imgUrl: string,
-        public Genres: Genre[]
+        public genres: Genre[]
 
     ){}
 }
