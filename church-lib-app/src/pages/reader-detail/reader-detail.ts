@@ -1,16 +1,10 @@
+import { ReaderService } from './../../providers/reader.service';
+import { Reader } from './../../models/reader';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { ReaderList } from "../reader-list";
+import { ReaderList } from "../reader-list/reader-list";
 import { ReaderEdit } from "../reader-edit/reader-edit";
-import { Reader } from "../../../models/reader";
-import { ReaderService } from "../../../providers/reader.service";
 
-/**
- * Generated class for the ReaderDetail page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-reader-detail',

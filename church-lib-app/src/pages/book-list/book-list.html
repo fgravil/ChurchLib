@@ -20,9 +20,9 @@
   </ion-searchbar>
   <ion-list>
     <button ion-item *ngFor="let book of queriedBooks" (click) = "onSelectBook(book)">
-      <ion-thumbnail item-left>
-        <img src="img/no-cover.jpg" alt="Book Cover"/>
-      </ion-thumbnail>
+      <ion-icon name="book" item-start>
+        <!-- <img src="img/no-cover.jpg" alt="Book Cover"/> -->
+      </ion-icon>
       <h3>{{book.title}}</h3>
       <p>{{book.author}} • {{book.year}}</p>
     </button>

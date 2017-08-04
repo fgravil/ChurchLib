@@ -1,14 +1,8 @@
+import { ReaderService } from './../../providers/reader.service';
+import { Reader } from './../../models/reader';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Reader } from "../../../models/reader";
-import { ReaderService } from "../../../providers/reader.service";
 
-/**
- * Generated class for the ReaderEdit page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-reader-edit',

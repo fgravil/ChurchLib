@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ReaderDetail } from "./reader-detail/reader-detail";
-import { ReaderEdit } from "./reader-edit/reader-edit";
+import { ReaderDetail } from "../reader-detail/reader-detail";
+import { ReaderEdit } from "../reader-edit/reader-edit";
 import { Reader } from "../../models/reader";
 import { ReaderService } from "../../providers/reader.service";
 
@@ -47,5 +47,8 @@ export class ReaderList {
       }
     })
   }
-
+  
+  getReaderInitials(firstName: string, lastName: string ): string{
+    return firstName.charAt(0) + lastName.charAt(0);
+  }
 }

@@ -4,23 +4,27 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from "@angular/forms";
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { Signup } from '../pages/signup/signup';
-import { Userpage } from '../pages/userpage/userpage';
+
+// Services
 import { AuthService } from "../providers/auth.service";
 import { BookService } from '../providers/book.service';
-import { BookList } from "../pages/book-list/book-list";
-import { BookDetail } from "../pages/book-list/book-detail/book-detail";
-import { BookEdit } from "../pages/book-list/book-edit/book-edit";
-import { ReaderList } from "../pages/reader-list/reader-list";
-import { ReaderService } from "../providers/reader.service";
-import { FormsModule } from "@angular/forms";
-import { ReaderEdit } from "../pages/reader-list/reader-edit/reader-edit";
-import { ReaderDetail } from "../pages/reader-list/reader-detail/reader-detail";
 import { TransactionService } from "../providers/transaction.service";
-import { TransactionsList } from "../pages/transactions-list/transactions-list";
+import { ReaderService } from "../providers/reader.service";
+
+// Pages
+import { HomePage } from './../pages/home/home';
+import { Signup } from './../pages/signup/signup';
+import { Userpage } from './../pages/userpage/userpage';
+import { BookList } from "./../pages/book-list/book-list";
+import { BookDetail } from './../pages/book-detail/book-detail';
+import { BookEdit } from "./../pages/book-edit/book-edit";
+import { ReaderList } from "./../pages/reader-list/reader-list";
+import { ReaderEdit } from "./../pages/reader-edit/reader-edit";
+import { ReaderDetail } from "./../pages/reader-detail/reader-detail";
+import { TransactionsList } from "./../pages/transactions-list/transactions-list";
 
 @NgModule({
   declarations: [

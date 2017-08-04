@@ -1,10 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { BookList } from "../book-list";
+import { BookList } from "../book-list/book-list";
 import { BookEdit } from "../book-edit/book-edit";
-import { Genre } from "../genre";
-import { BookService } from "../../../providers/book.service";
-import { Book } from "../../../models/book";
+import { Book } from "../../models/book";
+import { BookService } from "../../providers/book.service";
 
 /**
  * Generated class for the BookDetail page.
@@ -22,7 +21,7 @@ export class BookDetail {
   bookImg : string = "img/no-book.jpg";
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  private bookService: BookService, private alertCtrl: AlertController) {
+    private bookService: BookService, private alertCtrl: AlertController) {
     this.loadBook();
   }
 

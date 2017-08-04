@@ -24,13 +24,13 @@ export class TransactionsList {
     this.getTransactions();
   }
 
-  private onSelectTransaction(transaction: Transaction){
-      //this.navCtrl.push(TransactionDetail, {transaction: transaction});
-  }
+  // private onSelectTransaction(transaction: Transaction){
+  //     //this.navCtrl.push(TransactionDetail, {transaction: transaction});
+  // }
 
-  private onAddTransaction(){
+  // private onAddTransaction(){
 
-  }
+  // }
 
   private getTransactions(){
     this.transactionService.getTransactions().then(data => {

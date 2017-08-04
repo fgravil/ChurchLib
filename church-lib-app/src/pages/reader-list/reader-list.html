@@ -20,6 +20,9 @@
 <ion-content padding>
   <ion-list>
     <button ion-item *ngFor="let reader of readers" (click) = "onSelectReader(reader)">
+      <ion-avatar class="initials-icon" item-start>
+        <h3 class="initials">{{this.getReaderInitials(reader.firstName, reader.lastName)}}</h3>
+      </ion-avatar>
       <h4>{{reader.firstName}} {{reader.lastName}}</h4>
     </button>
   </ion-list>
