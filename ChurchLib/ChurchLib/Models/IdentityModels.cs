@@ -34,8 +34,7 @@ public class ApplicationDbContext : IdentityDbContext<User>
         
         public DbSet<Reader> Readers { get; set; }
         public DbSet<Book> Books { get; set; }
-        public DbSet<Delay> Delays { get; set; }
-        public DbSet<BorrowBook> BorrowedBooks { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Media> Media { get; set; }
 

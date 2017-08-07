@@ -79,3 +79,15 @@ C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\Microsof
 C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\obj\Debug\ChurchLib.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\obj\Debug\ChurchLib.Tests.dll
 C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\obj\Debug\ChurchLib.Tests.pdb
+C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\Microsoft.Extensions.Logging.dll
+C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\nunit.framework.dll
+C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\System.Web.Http.Cors.dll
+C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\System.Web.Cors.dll
+C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\Microsoft.Extensions.Logging.xml
+C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\nunit.framework.xml
+C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib.Tests\bin\Debug\System.Web.Http.Cors.xml

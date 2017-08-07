@@ -14,7 +14,7 @@ using ChurchLib.Models.LibraryModels;
 
 namespace ChurchLib.Controllers
 {
-    [Authorize]
+    
     public class BooksController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();

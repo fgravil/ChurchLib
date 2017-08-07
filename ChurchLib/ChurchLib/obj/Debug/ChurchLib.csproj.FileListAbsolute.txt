@@ -153,5 +153,3 @@ C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib\bin\Microsoft.Extensions
 C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib\bin\Microsoft.Extensions.Logging.Abstractions.xml
 C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib\obj\Debug\ChurchLib.Migrations.m1.resources
 C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib\obj\Debug\ChurchLib.csproj.GenerateResource.Cache
-C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib\obj\Debug\ChurchLib.Migrations.m2.resources
-C:\Users\Fred\Desktop\dotnet_portal\ChurchLib\ChurchLib\obj\Debug\ChurchLib.Migrations.m3.resources

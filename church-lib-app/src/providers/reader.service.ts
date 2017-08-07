@@ -36,7 +36,7 @@ export class ReaderService {
                 }
                 else resolve(false);
             })
-        })
+        }).catch(this.handleError);
     }
 
     addReader(reader: Reader): Promise<Reader>{

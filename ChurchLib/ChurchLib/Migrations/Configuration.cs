@@ -76,20 +76,20 @@ namespace ChurchLib.Migrations
 
             var Genres = new Genre[]
             {
-                new Genre(){genre = "Religion"},
-                new Genre(){genre = "Romance"},
-                new Genre(){genre = "Fantasy"},
-                new Genre(){genre = "History"},
-                new Genre(){genre = "Literature"},
-                new Genre(){genre = "Fiction"},
-                new Genre(){genre = "Non-Fiction"},
-                new Genre(){genre = "Historical"},
-                new Genre(){genre = "Mystery"},
+                new Genre(){name = "Religion"},
+                new Genre(){name = "Romance"},
+                new Genre(){name = "Fantasy"},
+                new Genre(){name = "History"},
+                new Genre(){name = "Literature"},
+                new Genre(){name = "Fiction"},
+                new Genre(){name = "Non-Fiction"},
+                new Genre(){name = "Historical"},
+                new Genre(){name = "Mystery"},
             };
 
             foreach (var genre in Genres)
             {
-                if (context.Genres.Count(g => g.genre == genre.genre) == 0)
+                if (context.Genres.Count(g => g.name == genre.name) == 0)
                 {
                     context.Genres.AddOrUpdate(genre);
                 }
@@ -113,7 +113,7 @@ namespace ChurchLib.Migrations
                     ISBN = "971006422380",
                     description = "lorem ipsum do lorm as posin",
                     year = 1945,
-                    BorrowedBook = null,
+                    Transaction = null,
                     imageUrl = ""
 
                 },
@@ -124,7 +124,7 @@ namespace ChurchLib.Migrations
                     ISBN = "980066238700",
                     description = "Journeys to the end of the world, fantastic creatures, and epic battles ",
                     year = 1978,
-                    BorrowedBook = null,
+                    Transaction = null,
                     imageUrl = "",
 
                 },
@@ -135,7 +135,7 @@ namespace ChurchLib.Migrations
                     ISBN = "978001423500",
                     description = "lorem ipsum do lorm as posin",
                     year = 1940,
-                    BorrowedBook = null,
+                    Transaction = null,
                     imageUrl = ""
 
                 },
@@ -146,7 +146,7 @@ namespace ChurchLib.Migrations
                     ISBN = "978006637710",
                     description = "lorem ipsum do lorm as posin",
                     year = 1985,
-                    BorrowedBook = null,
+                    Transaction = null,
                 },
                 new Book()
                 {
@@ -155,7 +155,7 @@ namespace ChurchLib.Migrations
                     ISBN = "970063238400",
                     description = "Journeys to the end of the world, fantastic creatures, and epic battles ",
                     year = 1999,
-                    BorrowedBook = null,
+                    Transaction = null,
                     imageUrl = ""
 
                 },
@@ -170,16 +170,16 @@ namespace ChurchLib.Migrations
                 }
             }
 
-            //var borrowedBooks = new BorrowBook[]
+            //var Transactions = new BorrowBook[]
             //{
             //    new BorrowBook(){BorrowBookID = 7, borrowDate = new DateTime(2017,5,18), dueDate = new DateTime(2017,5,30), ReaderID = 1}
             //};
 
-            //foreach (var book in borrowedBooks)
+            //foreach (var book in Transactions)
             //{
-            //    if (context.BorrowedBooks.Count(b => b.BorrowBookID == b.BorrowBookID) == 0)
+            //    if (context.Transactions.Count(b => b.BorrowBookID == b.BorrowBookID) == 0)
             //    {
-            //        context.BorrowedBooks.AddOrUpdate(book);
+            //        context.Transactions.AddOrUpdate(book);
             //    }
             //}
 

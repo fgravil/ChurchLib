@@ -11,7 +11,7 @@
     <button ion-button menuToggle icon-only>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Readers List</ion-title>
+    <ion-title i18n>Readers List</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -21,9 +21,9 @@
   <ion-list>
     <button ion-item *ngFor="let reader of readers" (click) = "onSelectReader(reader)">
       <ion-avatar class="initials-icon" item-start>
-        <h3 class="initials">{{this.getReaderInitials(reader.firstName, reader.lastName)}}</h3>
+        <h3 class="initials" i18n>{{this.getReaderInitials(reader.firstName, reader.lastName)}}</h3>
       </ion-avatar>
-      <h4>{{reader.firstName}} {{reader.lastName}}</h4>
+      <h4 i18n>{{reader.firstName}} {{reader.lastName}}</h4>
     </button>
   </ion-list>
   <ion-fab right bottom>

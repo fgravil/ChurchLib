@@ -14,34 +14,51 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)="onSubmit()" #readerForm="ngForm">
+  <form [formGroup]="readerForm" novalidate>
     <ion-list>
       <ion-item>
-        <ion-label floating>First Name</ion-label>
-        <ion-input type="text" [(ngModel)]="reader.firstName" name="firstName" required>
-          {{reader.firstName}}
-        </ion-input>
+        <ion-label floating i18n>First Name</ion-label>
+        <ion-input type="text" formControlName="firstName"></ion-input>
       </ion-item>
+      <ion-item class="error" *ngIf="readerForm.get('firstName').hasError('required') && readerForm.get('firstName').touched">
+          First Name is required
+      </ion-item>
+        <ion-item class="error" *ngIf="readerForm.get('firstName').hasError('minlength') && readerForm.get('firstName').touched">
+          Minimum of 2 characters required
+        </ion-item>
+        <ion-item class="error" *ngIf="readerForm.get('firstName').hasError('maxlength') && readerForm.get('firstName').touched">
+          Maximum of 20 characters required
+        </ion-item>
       <ion-item>
         <ion-label floating>Last Name</ion-label>
-        <ion-input type="text" [(ngModel)]="reader.lastName" name="lastName" required>
-          {{reader.lastName}}
-        </ion-input>
+        <ion-input type="text" formControlName="lastName"></ion-input>
+        <h2 class="error" *ngIf="readerForm.get('lastName').hasError('required') && readerForm.get('lastName').touched">
+          Last Name is required
+        </h2 >
+        <div class="error" *ngIf="readerForm.get('lastName').hasError('minlength') && readerForm.get('lastName').touched">
+          Minimum of 2 characters required
+        </div>
+        <div class="error" *ngIf="readerForm.get('lastName').hasError('maxlength') && readerForm.get('lastName').touched">
+          Maximum of 20 characters required
+        </div>
+        <div>randon</div>
       </ion-item>
       <ion-item>
         <ion-label floating>Email</ion-label>
-        <ion-input type="text" [(ngModel)]="reader.email" name="email" required>
-          {{reader.email}}
-        </ion-input>
+        <ion-input type="email" formControlName="email"></ion-input>
+        <div class="error" *ngIf="readerForm.get('email').hasError('required') && readerForm.get('email').touched">
+          Email is required
+        </div>
       </ion-item>
       <ion-item>
         <ion-label floating>Phone</ion-label>
-        <ion-input type="text" [(ngModel)]="reader.phone" name="phone" required>
-          {{reader.phone}}
-        </ion-input>
+        <ion-input type="tel" formControlName="phone"></ion-input>
+        <div class="error" *ngIf="readerForm.get('phone').hasError('required') && readerForm.get('phone').touched">
+          Phone is required
+        </div>
       </ion-item>
     </ion-list>
-    <button ion-button type="submit" [disabled]="!readerForm.form.valid">
+    <button ion-button type="submit" [disabled]="readerForm.invalid">
       {{isNewReader ? 'Add Reader': 'Update Reader'}}
     </button>
   </form>

@@ -52,7 +52,7 @@ export class BookList {
   }
 
   onSearch(){
-    this.queriedBooks = this.books.filter((book) => book.title.includes(this.input));
+    this.queriedBooks = this.books.filter((book) => book.title.toLowerCase().includes(this.input));
     console.log('querying');
   }
   onCancelSearch(){

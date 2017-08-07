@@ -9,10 +9,12 @@ namespace ChurchLib.Models.LibraryModels
     {
         public Genre()
         {
-            this.Book = new HashSet<Book>();
+            this.Books = new HashSet<Book>();
+            this.Media = new HashSet<Media>();
         }
         public int GenreID { get; set; }
-        public string genre { get; set; }
-        public virtual ICollection<Book> Book { get; set; }
+        public string name { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
+        public virtual ICollection<Media> Media { get; set; }
     }
 }

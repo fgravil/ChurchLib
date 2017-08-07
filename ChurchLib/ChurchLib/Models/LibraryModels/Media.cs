@@ -13,13 +13,20 @@ namespace ChurchLib.Models.LibraryModels
     }
     public class Media
     {
+        public Media()
+        {
+            this.Genres = new HashSet<Genre>();
+        }
         public int MediaID { get; set; }
         [Required]
         public MediaType mediaType { get; set; }
         [Required, StringLength(80)]
-        public string name { get; set; }
+        public string title { get; set; }
+        public DateTime date { get; set; }
         [StringLength(100)]
         public string description { get; set; }
+        public virtual ICollection<Genre> Genres { get; set; }
+        public virtual Transaction Transaction { get; set; }
 
     }
 }

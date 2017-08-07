@@ -17,6 +17,6 @@ namespace ChurchLib.Models.LibraryModels
         public string email { get; set; }
         public string phone { get; set; }
 
-        public virtual ICollection<BorrowBook> BorrowedBooks { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

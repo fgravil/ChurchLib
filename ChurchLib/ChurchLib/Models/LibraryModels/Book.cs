@@ -24,8 +24,8 @@ namespace ChurchLib.Models.LibraryModels
         public string description { get; set; }
         public string imageUrl { get; set; }
 
-        public virtual BorrowBook BorrowedBook { get; set; } 
         public virtual ICollection<Genre> Genres { get; set; }
+        public virtual Transaction Transaction { get; set; }
 
     }
 }
