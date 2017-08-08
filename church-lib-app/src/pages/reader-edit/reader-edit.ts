@@ -31,6 +31,11 @@ export class ReaderEdit {
       this.reader = new Reader(0, '', '', '', '', null);
     }
   }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ReaderEdit');
+  }
+
   createForm(): void{
     this.readerForm = this.fb.group({
       firstName: [ this.reader.firstName, Validators.compose([
@@ -49,25 +54,24 @@ export class ReaderEdit {
       ])],
       phone: [this.reader.phone, Validators.compose([
         Validators.required,
-        Validators.minLength(10),
-        Validators.pattern('/[0-9]/')
+        Validators.pattern(`(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}`)
       ])]
     })
   }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReaderEdit');
+  
+  private updateReaderFromForm(){
+    this.reader.firstName = this.readerForm.get('firstName').value;
+    this.reader.lastName = this.readerForm.get('lastName').value;
+    this.reader.email = this.readerForm.get('email').value;
+    this.reader.phone = this.readerForm.get('phone').value;
   }
 
   onSubmit(){
-    if(this.isNewReader){
-      this.readerService.addReader(this.reader)
-        .then( () => { console.log("reader was successfully added!")});
-    }
-    else{
-      this.readerService.updateReader(this.reader)
-        .then( () => { console.log("reader was successfully added!")});
-    }
-      this.navCtrl.push(ReaderList);  
+    this.updateReaderFromForm();
+    this.readerService.updateReader(this.reader);
+    this.navCtrl.push(ReaderList);  
   }
+
+  
 
 }
