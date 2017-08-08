@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-  <form [formGroup]="readerForm" novalidate>
+  <form [formGroup]="readerForm" (ngSubmit)="onSubmit()" novalidate>
     <ion-list>
       <ion-item>
         <ion-label floating i18n>First Name</ion-label>
@@ -32,30 +32,35 @@
       <ion-item>
         <ion-label floating>Last Name</ion-label>
         <ion-input type="text" formControlName="lastName"></ion-input>
-        <h2 class="error" *ngIf="readerForm.get('lastName').hasError('required') && readerForm.get('lastName').touched">
+      </ion-item>
+      <ion-item class="error" *ngIf="readerForm.get('lastName').hasError('required') && readerForm.get('lastName').touched">
           Last Name is required
-        </h2 >
-        <div class="error" *ngIf="readerForm.get('lastName').hasError('minlength') && readerForm.get('lastName').touched">
+      </ion-item>
+      <ion-item class="error" *ngIf="readerForm.get('lastName').hasError('minlength') && readerForm.get('lastName').touched">
           Minimum of 2 characters required
-        </div>
-        <div class="error" *ngIf="readerForm.get('lastName').hasError('maxlength') && readerForm.get('lastName').touched">
+      </ion-item>
+      <ion-item class="error" *ngIf="readerForm.get('lastName').hasError('maxlength') && readerForm.get('lastName').touched">
           Maximum of 20 characters required
-        </div>
-        <div>randon</div>
       </ion-item>
       <ion-item>
         <ion-label floating>Email</ion-label>
         <ion-input type="email" formControlName="email"></ion-input>
-        <div class="error" *ngIf="readerForm.get('email').hasError('required') && readerForm.get('email').touched">
-          Email is required
-        </div>
+      </ion-item>
+      <ion-item class="error" *ngIf="readerForm.get('email').hasError('required') && readerForm.get('email').touched">
+        Email is required
+      </ion-item>
+      <ion-item class="error" *ngIf="readerForm.get('email').hasError('email') && readerForm.get('email').touched">
+        Invalid email
       </ion-item>
       <ion-item>
-        <ion-label floating>Phone</ion-label>
+        <ion-label floating>Phone: ###-###-####</ion-label>
         <ion-input type="tel" formControlName="phone"></ion-input>
-        <div class="error" *ngIf="readerForm.get('phone').hasError('required') && readerForm.get('phone').touched">
-          Phone is required
-        </div>
+      </ion-item>
+      <ion-item class="error" *ngIf="readerForm.get('phone').hasError('required') && readerForm.get('phone').touched">
+        Phone is required
+      </ion-item>
+      <ion-item class="error" *ngIf="readerForm.get('phone').hasError('pattern') && readerForm.get('phone').touched">
+        Invalid phone format
       </ion-item>
     </ion-list>
     <button ion-button type="submit" [disabled]="readerForm.invalid">
