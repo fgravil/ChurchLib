@@ -1,65 +1,56 @@
-import { Http, Headers } from "@angular/http";
+import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import { Injectable } from "@angular/core";
 import { Reader } from "../models/reader";
+import { Observable } from "rxjs/Observable";
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ReaderService {
-    private baseUrl: string = "http://localhost:57428/api/readers";
+    private baseUrl: string = "http://localhost:57428/api/readers/";
     private token: string;
     private tokenType: string;
     private headers: Headers;
+    private options: RequestOptions;
     
     constructor(private http: Http){
         this.http = http;
         this.token =  window.localStorage.getItem('token');
         this.tokenType = window.localStorage.getItem('token-type');
         
-        this.headers = new Headers();
-        this.headers.append('Authorization', `${this.tokenType} ${this.token}`);
-        this.headers.append('Content-Type', 'application/json');
+        this.headers = new Headers({'Authorization' : `${this.tokenType} ${this.token}`, 'Content-Type': 'application/json' });
+        this.options = new RequestOptions({headers: this.headers});
     }
 
-    private handleError(error: any): Promise<any>{
-        console.error('An error occured', error);
-        return Promise.reject(error.message || error);
+    private handleError(error: any){
+        console.error(error);
+        return Observable.throw(error.json().error || 'Server error');
     }
 
-    getReaders(){
-        let headers = new Headers();
-        headers.append("Authorization", `${this.tokenType} ${this.token}`);
+    getReaders(): Observable<Reader[]>{
 
-        return new Promise(resolve => {
-            this.http.get(this.baseUrl, {headers: headers}).subscribe(data => {
-                if(data.ok){
-                    let readers: Reader[] = <Reader[]> JSON.parse(data.text());
-                    resolve(readers);
-                }
-                else resolve(false);
-            })
-        }).catch(this.handleError);
+        return this.http.get(this.baseUrl, this.options)
+        .map((res: Response) => res.json())
+        .catch(this.handleError);
     }
 
-    addReader(reader: Reader): Promise<Reader>{
-        return this.http
-        .post(this.baseUrl, reader, {headers: this.headers})
-        .toPromise()
-        .then(res => res.json().data as Reader)
-        .catch(this.handleError)
+    addReader(reader: Reader): Observable<Reader>{
+        let body = JSON.stringify(reader);
+        return this.http.post(this.baseUrl, body, this.options)
+            .map((res:Response) => res.json())
+            .catch(this.handleError);
     }
 
-    deleteReader(reader: Reader): Promise<Reader>{
-        return this.http
-            .delete(`${this.baseUrl}/${reader.ReaderID}`, {headers: this.headers})
-            .toPromise()
-            .then(res => res.json() as Reader)
+    deleteReader(reader: Reader): Observable<Reader>{
+        return this.http.delete(this.baseUrl + reader.ReaderID, this.options)
+            .map((res:Response) => res.json())
             .catch(this.handleError)
     }
 
-    updateReader(reader: Reader): Promise<Reader>{
-        return this.http
-            .put(`${this.baseUrl}/${reader.ReaderID}`, reader, {headers: this.headers})
-            .toPromise()
-            .then(res => res.json() as Reader)
+    updateReader(reader: Reader): Observable<Reader>{
+        let body = JSON.stringify(reader);
+        return this.http.put(this.baseUrl, body, this.options)
+            .map((res:Response) => res.json())
             .catch(this.handleError)
     }
 }
