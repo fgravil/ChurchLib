@@ -1,65 +1,55 @@
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from "@angular/core";
-import { Http,  Headers } from "@angular/http";
+import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 import { Book } from "../models/book";
 
 @Injectable()
 export class BookService{
     private baseUrl: string = "http://localhost:57428/api/books";
-    private tokenType: string;
     private token: string;
+    private tokenType: string;
     private headers: Headers;
+    private options: RequestOptions;
     
     constructor(public http: Http){
         this.http = http;
+        this.token =  window.localStorage.getItem('token');
         this.tokenType = window.localStorage.getItem('token-type');
-        this.token = window.localStorage.getItem('token');
         
-        this.headers = new Headers();        
-        this.headers.append('Authorization', `${this.tokenType} ${this.token}` );
-        this.headers.append('Content-Type','application/json');
+        this.headers = new Headers({'Authorization' : `${this.tokenType} ${this.token}`, 'Content-Type': 'application/json' });
+        this.options = new RequestOptions({headers: this.headers});
     }
 
-    getBooks(){
-        return new Promise(resolve => {
-            this.http.get(this.baseUrl, {headers: this.headers}).subscribe(data => {
-                if(data.ok){
-                    let books: any[] = <any[]> JSON.parse(data.text());
-                    resolve(
-                        books
-                    );
-                }
-                else resolve(false);
-            })
-        })
-    }
-
-    addBook(book: Book): Promise<Book>{
-        return this.http
-            .post(this.baseUrl, book ,{headers: this.headers})
-            .toPromise()
-            .then(res => res.json().data as Book)
+    getBooks(): Observable<Book[]>{
+        return this.http.get(this.baseUrl, this.options)
+            .map( (res: Response) => res.json())
             .catch(this.handleError);
     }
 
-    deleteBook(book: Book): Promise<Book>{
-        return this.http
-            .delete(`${this.baseUrl}/${book.BookID}`, {headers: this.headers})
-            .toPromise()
-            .then(res => res.json().data as Book)
+    addBook(book: Book): Observable<Book>{
+        let body = JSON.stringify(book);
+        return this.http.post(this.baseUrl, body , this.options)
+            .map( (res: Response) => res.json())
             .catch(this.handleError);
     }
 
-    updateBook(book: Book): Promise<Book>{
+    deleteBook(book: Book): Observable<Book>{
         return this.http
-            .put(`${this.baseUrl}/${book.BookID}`, book, {headers: this.headers})
-            .toPromise()
-            .then(res => res.json() as Book)
+            .delete(`${this.baseUrl}/${book.BookID}`, this.options)
+            .map(res => res.json().data as Book)
             .catch(this.handleError);
     }
 
-    private handleError(error: any): Promise<any> {
-        console.error('An error occured', error);
-        return Promise.reject(error.message || error);
+    updateBook(book: Book): Observable<Book>{
+        let body = JSON.stringify(book);
+        return this.http.put(`${this.baseUrl}/${book.BookID}`, body, this.options)
+            .map( (res: Response) => res.json())
+            .catch(this.handleError);
+    }
+
+    private handleError(error: any){
+        console.error(error);
+        return Observable.throw(error.json().error || 'Server error');
     }
 }

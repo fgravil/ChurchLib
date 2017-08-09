@@ -1,65 +1,56 @@
+import { Transaction } from './../models/transaction';
+import { Http, Headers, RequestOptions, Response } from "@angular/http";
 import { Injectable } from "@angular/core";
-import { Http,  Headers } from "@angular/http";
-import 'rxjs/add/operator/toPromise';
-import { Transaction } from "../models/transaction";
+import { Observable } from "rxjs/Observable";
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 @Injectable()
-export class TransactionService{
-    private baseUrl: string = "http://localhost:57428/api/transactions";
-    private tokenType: string;
+export class TransactionService {
+    private baseUrl: string = "http://localhost:57428/api/transactions/";
     private token: string;
+    private tokenType: string;
     private headers: Headers;
+    private options: RequestOptions;
     
-    constructor(public http: Http){
+    constructor(private http: Http){
         this.http = http;
+        this.token =  window.localStorage.getItem('token');
         this.tokenType = window.localStorage.getItem('token-type');
-        this.token = window.localStorage.getItem('token');
         
-        this.headers = new Headers();        
-        this.headers.append('Authorization', `${this.tokenType} ${this.token}` );
-        this.headers.append('Content-Type','application/json');
+        this.headers = new Headers({'Authorization' : `${this.tokenType} ${this.token}`, 'Content-Type': 'application/json' });
+        this.options = new RequestOptions({headers: this.headers});
     }
 
-    getTransactions(){
-        return new Promise(resolve => {
-            this.http.get(this.baseUrl, {headers: this.headers}).subscribe(data => {
-                if(data.ok){
-                    let transactions: any[] = <any[]> JSON.parse(data.text());
-                    resolve(
-                        transactions
-                    );
-                }
-                else resolve(false);
-            })
-        })
+    private handleError(error: any){
+        console.error(error);
+        return Observable.throw(error.json().error || 'Server error');
     }
 
-    addTransaction(transaction: Transaction): Promise<Transaction>{
-        return this.http
-            .post(this.baseUrl, transaction ,{headers: this.headers})
-            .toPromise()
-            .then(res => res.json().data as Transaction)
+    getTransactions(): Observable<Transaction[]>{
+
+        return this.http.get(this.baseUrl, this.options)
+        .map((res: Response) => res.json())
+        .catch(this.handleError);
+    }
+
+    addTransaction(transaction: Transaction): Observable<Transaction>{
+        let body = JSON.stringify(transaction);
+        return this.http.post(this.baseUrl, body, this.options)
+            .map((res:Response) => res.json())
             .catch(this.handleError);
     }
 
-    deleteTransaction(transaction: Transaction): Promise<Transaction>{
-        return this.http
-            .delete(`${this.baseUrl}/${transaction.TransactionID}`, {headers: this.headers})
-            .toPromise()
-            .then(res => res.json().data as Transaction)
-            .catch(this.handleError);
+    deleteTransaction(transaction: Transaction): Observable<Transaction>{
+        return this.http.delete(this.baseUrl + transaction.TransactionID, this.options)
+            .map((res:Response) => res.json())
+            .catch(this.handleError)
     }
 
-    updateTransaction(transaction: Transaction): Promise<Transaction>{
-        return this.http
-            .put(`${this.baseUrl}/${transaction.TransactionID}`, transaction, {headers: this.headers})
-            .toPromise()
-            .then(res => res.json() as Transaction)
-            .catch(this.handleError);
-    }
-
-    private handleError(error: any): Promise<any> {
-        console.error('An error occured', error);
-        return Promise.reject(error.message || error);
+    updateTransaction(transaction: Transaction): Observable<Transaction>{
+        let body = JSON.stringify(transaction);
+        return this.http.put(this.baseUrl, body, this.options)
+            .map((res:Response) => res.json())
+            .catch(this.handleError)
     }
 }

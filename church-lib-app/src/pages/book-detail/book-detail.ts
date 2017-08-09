@@ -1,9 +1,8 @@
+import { BookService } from './../../providers/book.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { BookList } from "../book-list/book-list";
 import { BookEdit } from "../book-edit/book-edit";
 import { Book } from "../../models/book";
-import { BookService } from "../../providers/book.service";
 
 /**
  * Generated class for the BookDetail page.
@@ -56,10 +55,10 @@ export class BookDetail {
 
   onConfirmDelete(){
     this.bookService.deleteBook(this.book)
-      .then( () => {
-        console.log('Book successfully deleted');
-        this.navCtrl.push(BookList);
-      })
+      .subscribe(
+        book => this.book = book,
+        err => this.handleError(err)
+      );
   }
 
   onEdit(){
@@ -68,6 +67,10 @@ export class BookDetail {
 
   dismiss(){
     this.navCtrl.pop();
+  }
+
+  handleError(error?: string){
+    console.log(error);
   }
 
 }

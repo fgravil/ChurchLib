@@ -16,29 +16,27 @@ import { TransactionService } from "../../providers/transaction.service";
 })
 export class TransactionsList {
   private transactions: Transaction[];
+  private 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private transactionService: TransactionService) {
   }
 
   ionViewDidLoad() {
-    this.getTransactions();
+    this.transactionService.getTransactions()
+        .subscribe(
+          transactions => this.transactions = transactions,
+          err => this.handleError(err)
+        );
   }
 
   // private onSelectTransaction(transaction: Transaction){
   //     //this.navCtrl.push(TransactionDetail, {transaction: transaction});
   // }
-
-  // private onAddTransaction(){
-
-  // }
-
-  private getTransactions(){
-    this.transactionService.getTransactions().then(data => {
-      if(data){
-        this.transactions = <Transaction[]> data;
-        //this.queriedBooks = this.books.slice();
-      }
-    })
+  
+  private handleError(error?: string){
+    console.log(error);
   }
+  
+
 
 }
