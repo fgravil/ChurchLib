@@ -1,7 +1,7 @@
 import { BookService } from './../../providers/book.service';
 import { Book } from './../../models/book';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { BookDetail } from "./../book-detail/book-detail";
 import { BookEdit } from "./../book-edit/book-edit";
 
@@ -22,41 +22,53 @@ export class BookList {
   input: string = '';
   queriedBooks: Book[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-  public bookService: BookService, public modalCtrl: ModalController) {
+  constructor(private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController,
+  private bookService: BookService, private modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
-    this.getBooks();
+    this.bookService.getBooks()
+      .subscribe(books => this.getBookSuccess(books), err => this.handleError(err));
     //console.log(window.localStorage.getItem('token-expire-time'));
   }
 
-  onSelectBook(book){
+  getBookSuccess(books: Book[]):void{
+    this.books = books;
+    this.queriedBooks = books;
+  }
+  
+  onSelectBook(book):void {
     this.navCtrl.push(BookDetail, {book: book});
     // let modal = this.modalCtrl.create(BookDetail, book);
     // modal.present();
     
   }
 
-  onAddBook(){
+  onAddBook(): void{
     this.navCtrl.push(BookEdit);
   }
 
-  getBooks(){
-    this.bookService.getBooks().then(data => {
-      if(data){
-        this.books = <Book[]> data;
-        this.queriedBooks = this.books.slice();
-      }
-    })
-  }
-
-  onSearch(){
+  onSearch(): void{
     this.queriedBooks = this.books.filter((book) => book.title.toLowerCase().includes(this.input));
     console.log('querying');
   }
-  onCancelSearch(){
+  
+  onCancelSearch(): void{
     this.queriedBooks = this.books.slice();
+  }
+  
+  handleError(error: string): void{
+    this.displayAlert("Error", "Could not get list of books.");
+    console.log(error);
+  }
+
+  displayAlert(message: string, details?: string): void{
+    let alert = this.alertCtrl.create({
+      title: message,
+      subTitle: details,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

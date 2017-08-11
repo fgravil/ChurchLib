@@ -51,10 +51,21 @@ export class ReaderDetail {
 
   onConfirmDelete(){
     this.readerService.deleteReader(this.reader)
-      .then( () => {
-        console.log('Book successfully deleted');
-        this.navCtrl.push(ReaderList);
-      })
+      .subscribe(() => {} ,err => this.handleError(err))
+  }
+  
+  handleError(error: string): void{
+    this.displayAlert("Error", "Could not delete reader.");
+    console.log(error);
+  }
+
+  displayAlert(message: string, details?: string){
+    let alert = this.alertCtrl.create({
+      title: message,
+      subTitle: details,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

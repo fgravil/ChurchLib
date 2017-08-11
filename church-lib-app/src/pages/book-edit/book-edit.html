@@ -12,7 +12,7 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)="onSubmit()" #bookForm="ngForm">
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" novalidate>
     <ion-list>
       <!--<ion-item>
         <ion-card>
@@ -21,27 +21,60 @@
       </ion-item>-->
       <ion-item>
         <ion-label floating>Title</ion-label>
-        <ion-input type="text" [(ngModel)]="book.title" name="title" required>{{book.title}}</ion-input>
+        <ion-input type="text" formControlName="title"></ion-input>
       </ion-item>
+      <ion-item class="error" *ngIf="bookForm.get('title').hasError('required') && bookForm.get('title').touched" i18n>
+          Title is required
+      </ion-item>
+        <ion-item class="error" *ngIf="bookForm.get('title').hasError('minlength') && bookForm.get('title').touched" i18n>
+          Minimum of 2 characters required
+        </ion-item>
+        <ion-item class="error" *ngIf="bookForm.get('title').hasError('maxlength') && bookForm.get('title').touched" i18n>
+          Maximum of 80 characters required
+        </ion-item>
       <ion-item>
         <ion-label floating>Author</ion-label>
-        <ion-input type="text" [(ngModel)]="book.author" name="author" required>{{book.author}}</ion-input>
+        <ion-input type="text" formControlName="author"></ion-input>
       </ion-item>
+      <ion-item class="error" *ngIf="bookForm.get('author').hasError('required') && bookForm.get('author').touched">
+          Author is required
+      </ion-item>
+        <ion-item class="error" *ngIf="bookForm.get('author').hasError('minlength') && bookForm.get('author').touched">
+          Minimum of 2 characters required
+        </ion-item>
+        <ion-item class="error" *ngIf="bookForm.get('author').hasError('maxlength') && bookForm.get('author').touched">
+          Maximum of 40 characters required
+        </ion-item>
       <ion-item>
         <ion-label floating>Year</ion-label>
-        <ion-input type="number" [(ngModel)]="book.year" name="year">{{book.year}}</ion-input>
+        <ion-input type="number" formControlName="year"></ion-input>
+      </ion-item>
+      <ion-item class="error" *ngIf="bookForm.get('year').hasError('required') && bookForm.get('year').touched">
+          Year is required
       </ion-item>
       <ion-item>
         <ion-label floating>ISBN</ion-label>
-        <ion-input type="number" [(ngModel)]="book.isbn" name="isbn" required>{{book.isbn}}</ion-input>
+        <ion-input type="number" formControName="isbn"></ion-input>
+      </ion-item>
+      <ion-item class="error" *ngIf="bookForm.get('isbn').hasError('required') && bookForm.get('isbn').touched">
+          ISBN is required
+      </ion-item>
+      <ion-item class="error" *ngIf="bookForm.get('isbn').hasError('minlength') && bookForm.get('isbn').touched">
+        The ISBN should be 13 characters
+      </ion-item>
+      <ion-item class="error" *ngIf="bookForm.get('isbn').hasError('maxlength') && bookForm.get('isbn').touched">
+        The ISBN should be 13 characters
       </ion-item>
       <ion-item>
         <ion-label floating>Description</ion-label>
-        <ion-textarea ngModel [(ngModel)]="book.description" name="description">{{book.description}}</ion-textarea>
+        <ion-textarea formControlName="description"></ion-textarea>
+      </ion-item>
+      <ion-item class="error" *ngIf="bookForm.get('description').hasError('maxlength') && bookForm.get('description').touched">
+         Maximum of 500 characters
       </ion-item>
     </ion-list>
 
-    <button ion-button type="submit" [disabled]="!bookForm.form.valid">
+    <button ion-button type="submit" [disabled]="bookForm.invalid">
       {{isNewBook ? 'Add Book' : 'Update'}}
     </button>
   </form>

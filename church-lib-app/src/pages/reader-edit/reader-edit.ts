@@ -1,8 +1,7 @@
-import { ReaderList } from './../reader-list/reader-list';
 import { ReaderService } from './../../providers/reader.service';
 import { Reader } from './../../models/reader';
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component} from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @IonicPage()
@@ -15,10 +14,14 @@ export class ReaderEdit {
   readerForm: FormGroup;
   isNewReader: boolean = true;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController,
   private readerService: ReaderService, private fb: FormBuilder) {
     this.initializeReader();
     this.createForm();
+  }
+  
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ReaderEdit');
   }
   
   initializeReader(): void{
@@ -30,10 +33,6 @@ export class ReaderEdit {
     else{
       this.reader = new Reader(0, '', '', '', '', null);
     }
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReaderEdit');
   }
 
   createForm(): void{
@@ -59,19 +58,41 @@ export class ReaderEdit {
     })
   }
   
-  private updateReaderFromForm(){
+  private updateReaderFromForm(): void{
     this.reader.firstName = this.readerForm.get('firstName').value;
     this.reader.lastName = this.readerForm.get('lastName').value;
     this.reader.email = this.readerForm.get('email').value;
     this.reader.phone = this.readerForm.get('phone').value;
   }
 
-  onSubmit(){
+  onSubmit(): void{
     this.updateReaderFromForm();
-    this.readerService.updateReader(this.reader);
-    this.navCtrl.push(ReaderList);  
+    this.isNewReader ? this.addNewReader() : this.updateReader();
   }
 
+  addNewReader(): void{
+    this.readerService.addReader(this.reader)
+      .subscribe(reader => this.reader = reader, err => this.handleError(err));
+    this.isNewReader = false;
+  }
   
+  updateReader(): void{
+    this.readerService.updateReader(this.reader)
+      .subscribe(reader => this.reader, err => this.handleError(err));
+  }
+
+  handleError(error: string): void{
+    this.isNewReader ? this.displayAlert("Error", "Could not add new reader") : this.displayAlert("Error", "Could not update reader");
+    console.log(error);
+  }
+
+  displayAlert(message: string, details?: string): void{
+    let alert = this.alertCtrl.create({
+      title: message,
+      subTitle: details,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
 
 }

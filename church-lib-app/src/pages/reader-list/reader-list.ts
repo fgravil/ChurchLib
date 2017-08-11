@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ReaderDetail } from "../reader-detail/reader-detail";
 import { ReaderEdit } from "../reader-edit/reader-edit";
 import { Reader } from "../../models/reader";
@@ -21,13 +21,14 @@ export class ReaderList {
   input: string = '';
   queriedReaders: Reader[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  public readerService: ReaderService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+   public alertCtrl: AlertController, public readerService: ReaderService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReaderList');
-    this.getReaders();
+    this.readerService.getReaders()
+      .subscribe(readers => this.readers = readers, err => this.handleError(err));
   }
 
   onSelectReader(reader){
@@ -37,15 +38,19 @@ export class ReaderList {
   onAddReader(){
     this.navCtrl.push(ReaderEdit);
   }
+  
+  handleError(error: string): void{
+    this.displayAlert("Error", "Could not get list of readers.");
+    console.log(error);
+  }
 
-  getReaders(){
-    this.readerService.getReaders().then(data => {
-      if(data){
-        this.readers = <Reader[]> data;
-        this.queriedReaders = this.readers.slice();
-        console.log(this.readers);
-      }
-    })
+  displayAlert(message: string, details?: string){
+    let alert = this.alertCtrl.create({
+      title: message,
+      subTitle: details,
+      buttons: ['OK']
+    });
+    alert.present();
   }
   
   getReaderInitials(firstName: string, lastName: string ): string{

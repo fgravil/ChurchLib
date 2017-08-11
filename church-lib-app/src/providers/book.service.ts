@@ -37,7 +37,6 @@ export class BookService{
     deleteBook(book: Book): Observable<Book>{
         return this.http
             .delete(`${this.baseUrl}/${book.BookID}`, this.options)
-            .map(res => res.json().data as Book)
             .catch(this.handleError);
     }
 
