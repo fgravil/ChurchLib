@@ -23,7 +23,7 @@ namespace ChurchLib.Models.LibraryModels
         [Required, StringLength(80)]
         public string title { get; set; }
         public DateTime date { get; set; }
-        [StringLength(100)]
+        [StringLength(300)]
         public string description { get; set; }
         public virtual ICollection<Genre> Genres { get; set; }
         public virtual Transaction Transaction { get; set; }

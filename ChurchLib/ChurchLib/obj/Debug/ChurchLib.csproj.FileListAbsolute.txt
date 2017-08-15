@@ -304,7 +304,8 @@ C:\Users\Fred\Documents\GitHub\ChurchLib\ChurchLib\ChurchLib\bin\ru\System.Spati
 C:\Users\Fred\Documents\GitHub\ChurchLib\ChurchLib\ChurchLib\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Fred\Documents\GitHub\ChurchLib\ChurchLib\ChurchLib\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\Fred\Documents\GitHub\ChurchLib\ChurchLib\ChurchLib\obj\Debug\ChurchLib.csprojResolveAssemblyReference.cache
-C:\Users\Fred\Documents\GitHub\ChurchLib\ChurchLib\ChurchLib\obj\Debug\ChurchLib.Migrations.m1.resources
-C:\Users\Fred\Documents\GitHub\ChurchLib\ChurchLib\ChurchLib\obj\Debug\ChurchLib.csproj.GenerateResource.Cache
 C:\Users\Fred\Documents\GitHub\ChurchLib\ChurchLib\ChurchLib\obj\Debug\ChurchLib.dll
 C:\Users\Fred\Documents\GitHub\ChurchLib\ChurchLib\ChurchLib\obj\Debug\ChurchLib.pdb
+C:\Users\Fred\Documents\GitHub\ChurchLib\ChurchLib\ChurchLib\obj\Debug\ChurchLib.Migrations.m1.resources
+C:\Users\Fred\Documents\GitHub\ChurchLib\ChurchLib\ChurchLib\obj\Debug\ChurchLib.csproj.GenerateResource.Cache
+C:\Users\Fred\Documents\GitHub\ChurchLib\ChurchLib\ChurchLib\obj\Debug\ChurchLib.csproj.CoreCompileInputs.cache

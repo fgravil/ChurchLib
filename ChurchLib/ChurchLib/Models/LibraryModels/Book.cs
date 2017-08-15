@@ -20,7 +20,7 @@ namespace ChurchLib.Models.LibraryModels
         [Required, StringLength(13)]
         public string ISBN { get; set; }
         public int year { get; set; }
-        [StringLength(100)]
+        [StringLength(300)]
         public string description { get; set; }
         public string imageUrl { get; set; }
 

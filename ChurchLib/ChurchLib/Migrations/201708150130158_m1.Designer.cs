@@ -13,7 +13,7 @@ namespace ChurchLib.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201707032129405_m1"; }
+            get { return "201708150130158_m1"; }
         }
         
         string IMigrationMetadata.Source
