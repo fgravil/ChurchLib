@@ -27,9 +27,11 @@ export class BookList {
   }
 
   ionViewDidLoad() {
+  }
+
+  ionViewWillEnter(){
     this.bookService.getBooks()
       .subscribe(books => this.getBookSuccess(books), err => this.handleError(err));
-    //console.log(window.localStorage.getItem('token-expire-time'));
   }
 
   getBookSuccess(books: Book[]):void{
@@ -38,10 +40,7 @@ export class BookList {
   }
   
   onSelectBook(book):void {
-    this.navCtrl.push(BookDetail, {book: book});
-    // let modal = this.modalCtrl.create(BookDetail, book);
-    // modal.present();
-    
+    this.navCtrl.push(BookDetail, {book: book});  
   }
 
   onAddBook(): void{

@@ -52,9 +52,12 @@
       <ion-item class="error" *ngIf="bookForm.get('year').hasError('required') && bookForm.get('year').touched">
           Year is required
       </ion-item>
+      <ion-item class="error" *ngIf="bookForm.get('year').hasError('pattern') && bookForm.get('year').touched">
+          Invalid year
+      </ion-item>
       <ion-item>
         <ion-label floating>ISBN</ion-label>
-        <ion-input type="number" formControName="isbn"></ion-input>
+        <ion-input type="number" formControlName="isbn"></ion-input>
       </ion-item>
       <ion-item class="error" *ngIf="bookForm.get('isbn').hasError('required') && bookForm.get('isbn').touched">
           ISBN is required
@@ -70,7 +73,7 @@
         <ion-textarea formControlName="description"></ion-textarea>
       </ion-item>
       <ion-item class="error" *ngIf="bookForm.get('description').hasError('maxlength') && bookForm.get('description').touched">
-         Maximum of 500 characters
+         Maximum of 300 characters
       </ion-item>
     </ion-list>
 

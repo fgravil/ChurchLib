@@ -55,7 +55,8 @@ export class BookEdit {
       ])],
       //TODO: change to list
       year: [this.book.year, Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.pattern('^[12][0-9]{3}$')
       ])],
       isbn: [this.book.isbn, Validators.compose([
         Validators.required,
@@ -63,16 +64,17 @@ export class BookEdit {
         Validators.maxLength(13)
       ])],
       description: [ this.book.description, Validators.compose([
-        Validators.maxLength(500)
+        Validators.maxLength(300)
       ])]
     });
   }
 
   updateBookFromForm(){
-    this.book.BookID = this.bookForm.get('BookID').value;
+    this.book.title = this.bookForm.get('title').value;
     this.book.author = this.bookForm.get('author').value;
     this.book.year = this.bookForm.get('year').value;
     this.book.isbn = this.bookForm.get('isbn').value;
+    this.book.description = this.bookForm.get('description').value;
   }
   
   onSubmit(): void{
@@ -82,13 +84,20 @@ export class BookEdit {
 
   addBook(): void{
     this.bookService.addBook(this.book)
-        .subscribe( book => {}, err => this.handleError(err));
-    this.isNewBook = false;
+        .subscribe( book => this.onAddBookSuccess(book), err => this.handleError(err));
   }
 
+  onAddBookSuccess(book: Book): void{
+    this.navCtrl.pop();
+  }
+  
   updateBook(): void{
     this.bookService.updateBook(this.book)
-      .subscribe( book => this.book = book, err => this.handleError(err));
+      .subscribe( book => this.onUpdateBookSuccess(book), err => this.handleError(err));
+  }
+
+  onUpdateBookSuccess(book: Book): void{
+    this.navCtrl.pop();
   }
   
   handleError(error: string): void{

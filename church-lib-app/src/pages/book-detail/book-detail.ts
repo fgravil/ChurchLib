@@ -28,11 +28,28 @@ export class BookDetail {
     console.log(this.book); 
   }
 
+  ionViewWillEnter(){
+    console.log("Should load book");
+  }
+
   loadBook(){
     this.book = this.navParams.get('book');
   }
 
   onDelete(){
+    this.deleteAlert();
+  }
+
+  onConfirmDelete(){
+    this.bookService.deleteBook(this.book)
+      .subscribe(
+        book => this.book = book,
+        err => this.handleError(err)
+      );
+    this.navCtrl.pop();
+  }
+
+  deleteAlert(){
     let alert = this.alertCtrl.create({
       title: 'Confirm Delete',
       message: 'Are you sure you wan to delete this book?',
@@ -51,14 +68,6 @@ export class BookDetail {
       ]
     });
     alert.present();
-  }
-
-  onConfirmDelete(){
-    this.bookService.deleteBook(this.book)
-      .subscribe(
-        book => this.book = book,
-        err => this.handleError(err)
-      );
   }
 
   onEdit(){
