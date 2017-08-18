@@ -1,3 +1,4 @@
+import { BookDetail } from './../book-detail/book-detail';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
@@ -89,14 +90,15 @@ export class BookEdit {
 
   onAddBookSuccess(book: Book): void{
     this.navCtrl.pop();
+    this.navCtrl.push(BookDetail,{'book': book});
   }
   
   updateBook(): void{
     this.bookService.updateBook(this.book)
-      .subscribe( book => this.onUpdateBookSuccess(book), err => this.handleError(err));
+      .subscribe( () => this.onUpdateBookSuccess(), err => this.handleError(err));
   }
 
-  onUpdateBookSuccess(book: Book): void{
+  onUpdateBookSuccess(): void{
     this.navCtrl.pop();
   }
   

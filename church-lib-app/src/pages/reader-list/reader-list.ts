@@ -18,25 +18,41 @@ import { ReaderService } from "../../providers/reader.service";
 })
 export class ReaderList {
   readers: Reader[];
-  input: string = '';
+  searchInput: string = '';
   queriedReaders: Reader[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
    public alertCtrl: AlertController, public readerService: ReaderService) {
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad ReaderList');
     this.readerService.getReaders()
-      .subscribe(readers => this.readers = readers, err => this.handleError(err));
+      .subscribe(readers => this.getReaderSuccess(readers), err => this.handleError(err));
   }
 
+  getReaderSuccess(readers){
+    this.readers = readers;
+    this.queriedReaders = readers;
+  }
   onSelectReader(reader){
       this.navCtrl.push(ReaderDetail, {reader: reader});
   }
 
   onAddReader(){
     this.navCtrl.push(ReaderEdit);
+  }
+
+  onSearch(): void{
+    this.queriedReaders = this.readers.filter(function(reader){
+      let readerFullName: string = `${reader.firstName} ${reader.lastName}`;
+      return readerFullName.toLowerCase().includes(this.searchInput);
+    }.bind(this));
+    //console.log('querying');
+  }
+  
+  onCancelSearch(): void{
+    this.queriedReaders = this.readers.slice();
   }
   
   handleError(error: string): void{

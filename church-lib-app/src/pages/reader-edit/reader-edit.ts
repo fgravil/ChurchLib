@@ -1,3 +1,4 @@
+import { ReaderDetail } from './../reader-detail/reader-detail';
 import { ReaderService } from './../../providers/reader.service';
 import { Reader } from './../../models/reader';
 import { Component} from '@angular/core';
@@ -53,7 +54,7 @@ export class ReaderEdit {
       ])],
       phone: [this.reader.phone, Validators.compose([
         Validators.required,
-        Validators.pattern(`(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}`)
+        Validators.pattern(`(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?\\d{3}\\d{4}`)
       ])]
     })
   }
@@ -72,15 +73,24 @@ export class ReaderEdit {
 
   addNewReader(): void{
     this.readerService.addReader(this.reader)
-      .subscribe(reader => this.reader = reader, err => this.handleError(err));
+      .subscribe(reader => this.addNewReaderSuccess(reader), err => this.handleError(err));
     this.isNewReader = false;
   }
   
-  updateReader(): void{
-    this.readerService.updateReader(this.reader)
-      .subscribe(reader => this.reader, err => this.handleError(err));
+  addNewReaderSuccess(reader: Reader){
+    this.reader = reader;
+    this.navCtrl.pop();
+    this.navCtrl.push(ReaderDetail, {'reader': this.reader});
   }
 
+  updateReader(): void{
+    this.readerService.updateReader(this.reader)
+      .subscribe(() => this.updateReaderSuccess(), err => this.handleError(err));
+  }
+
+  updateReaderSuccess(){
+    this.navCtrl.pop();
+  }
   handleError(error: string): void{
     this.isNewReader ? this.displayAlert("Error", "Could not add new reader") : this.displayAlert("Error", "Could not update reader");
     console.log(error);

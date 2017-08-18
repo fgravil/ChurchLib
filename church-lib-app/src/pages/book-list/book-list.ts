@@ -19,7 +19,7 @@ import { BookEdit } from "./../book-edit/book-edit";
 })
 export class BookList {
   books: Book[];
-  input: string = '';
+  searchInput: string = '';
   queriedBooks: Book[];
 
   constructor(private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController,
@@ -48,7 +48,7 @@ export class BookList {
   }
 
   onSearch(): void{
-    this.queriedBooks = this.books.filter((book) => book.title.toLowerCase().includes(this.input));
+    this.queriedBooks = this.books.filter((book) => book.title.toLowerCase().includes(this.searchInput));
     console.log('querying');
   }
   

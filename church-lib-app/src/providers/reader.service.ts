@@ -49,7 +49,7 @@ export class ReaderService {
 
     updateReader(reader: Reader): Observable<Reader>{
         let body = JSON.stringify(reader);
-        return this.http.put(this.baseUrl, body, this.options)
+        return this.http.put(`${this.baseUrl}${reader.ReaderID}`, body, this.options)
             .map((res:Response) => res.json())
             .catch(this.handleError)
     }

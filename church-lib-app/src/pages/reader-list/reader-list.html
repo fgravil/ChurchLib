@@ -18,8 +18,14 @@
 
 
 <ion-content padding>
+   <ion-searchbar
+    [(ngModel)]="searchInput"
+    [showCancelButton]="true"
+    (ionInput)="onSearch()"
+    (ionCancel)="onCancelSearch()">
+  </ion-searchbar>
   <ion-list>
-    <button ion-item *ngFor="let reader of readers" (click) = "onSelectReader(reader)">
+    <button ion-item *ngFor="let reader of queriedReaders" (click) = "onSelectReader(reader)">
       <ion-avatar class="initials-icon" item-start>
         <h3 class="initials" i18n>{{this.getReaderInitials(reader.firstName, reader.lastName)}}</h3>
       </ion-avatar>

@@ -53,7 +53,7 @@
         Invalid email
       </ion-item>
       <ion-item>
-        <ion-label floating>Phone: ###-###-####</ion-label>
+        <ion-label floating>Phone</ion-label>
         <ion-input type="tel" formControlName="phone"></ion-input>
       </ion-item>
       <ion-item class="error" *ngIf="readerForm.get('phone').hasError('required') && readerForm.get('phone').touched">

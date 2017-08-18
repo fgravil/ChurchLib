@@ -51,9 +51,12 @@ export class ReaderDetail {
 
   onConfirmDelete(){
     this.readerService.deleteReader(this.reader)
-      .subscribe(() => {} ,err => this.handleError(err))
+      .subscribe(() => this.onDeleteSuccess() ,err => this.handleError(err))
   }
   
+  onDeleteSuccess(){
+    this.navCtrl.pop();
+  }
   handleError(error: string): void{
     this.displayAlert("Error", "Could not delete reader.");
     console.log(error);

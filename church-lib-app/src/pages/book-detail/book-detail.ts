@@ -74,10 +74,6 @@ export class BookDetail {
     this.navCtrl.push(BookEdit, {book: this.book});
   }
 
-  dismiss(){
-    this.navCtrl.pop();
-  }
-
   handleError(error?: string){
     console.log(error);
   }
